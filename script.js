@@ -18,94 +18,119 @@
 })();
 
 /* ==========================================
-   PARTICLE BACKGROUND
+   RIBBON / CONFETTI BACKGROUND
    ========================================== */
 (function initParticles() {
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
-    let particles = [];
-    const PARTICLE_COUNT = 60;
+    let ribbons = [];
+    const RIBBON_COUNT = 55;
+    const colors = [
+        "#ff6b9d",
+        "#c44dff",
+        "#58a6ff",
+        "#3fb950",
+        "#39d2c0",
+        "#ffd700",
+        "#f0883e",
+        "#ff5f57",
+    ];
 
     function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
-
     window.addEventListener("resize", resize);
     resize();
 
-    class Particle {
-        constructor() {
-            this.reset();
+    class Ribbon {
+        constructor(startFromTop) {
+            this.reset(startFromTop);
         }
 
-        reset() {
+        reset(startFromTop) {
             this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 0.5;
-            this.speedX = (Math.random() - 0.5) * 0.5;
-            this.speedY = (Math.random() - 0.5) * 0.5;
-            this.opacity = Math.random() * 0.5 + 0.1;
-            const colors = [
-                "#ff6b9d",
-                "#c44dff",
-                "#58a6ff",
-                "#3fb950",
-                "#39d2c0",
-            ];
+            this.y = startFromTop
+                ? -Math.random() * canvas.height
+                : Math.random() * canvas.height;
+            this.width = Math.random() * 8 + 4;
+            this.height = Math.random() * 12 + 6;
+            this.speedY = Math.random() * 0.6 + 0.15;
+            this.speedX = (Math.random() - 0.5) * 0.4;
+            this.rotation = Math.random() * 360;
+            this.rotationSpeed = (Math.random() - 0.5) * 2;
             this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.opacity = Math.random() * 0.4 + 0.15;
+            this.wobbleSpeed = Math.random() * 0.03 + 0.01;
+            this.wobbleAmp = Math.random() * 1.5 + 0.5;
+            this.wobbleOffset = Math.random() * Math.PI * 2;
+            this.time = 0;
+            // Shape type: 0 = rectangle ribbon, 1 = circle, 2 = thin strip
+            this.shape = Math.floor(Math.random() * 3);
         }
 
         update() {
-            this.x += this.speedX;
+            this.time++;
             this.y += this.speedY;
+            this.x +=
+                this.speedX +
+                Math.sin(this.time * this.wobbleSpeed + this.wobbleOffset) *
+                    this.wobbleAmp;
+            this.rotation += this.rotationSpeed;
 
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            // Reset when off screen
+            if (this.y > canvas.height + 20) {
+                this.reset(true);
+                this.y = -20;
+            }
+            if (this.x < -30) this.x = canvas.width + 30;
+            if (this.x > canvas.width + 30) this.x = -30;
         }
 
         draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate((this.rotation * Math.PI) / 180);
             ctx.globalAlpha = this.opacity;
-            ctx.fill();
-            ctx.globalAlpha = 1;
-        }
-    }
+            ctx.fillStyle = this.color;
 
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push(new Particle());
-    }
-
-    function connectParticles() {
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-
-                if (dist < 150) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = particles[i].color;
-                    ctx.globalAlpha = 0.05 * (1 - dist / 150);
-                    ctx.lineWidth = 0.5;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                    ctx.globalAlpha = 1;
-                }
+            if (this.shape === 0) {
+                // Ribbon rectangle
+                ctx.fillRect(
+                    -this.width / 2,
+                    -this.height / 2,
+                    this.width,
+                    this.height,
+                );
+            } else if (this.shape === 1) {
+                // Circle confetti
+                ctx.beginPath();
+                ctx.arc(0, 0, this.width / 2.5, 0, Math.PI * 2);
+                ctx.fill();
+            } else {
+                // Thin curly strip
+                ctx.beginPath();
+                ctx.moveTo(-this.width / 2, 0);
+                ctx.quadraticCurveTo(0, -this.height / 2, this.width / 2, 0);
+                ctx.quadraticCurveTo(0, this.height / 2, -this.width / 2, 0);
+                ctx.fill();
             }
+
+            ctx.globalAlpha = 1;
+            ctx.restore();
         }
+    }
+
+    for (let i = 0; i < RIBBON_COUNT; i++) {
+        ribbons.push(new Ribbon(false));
     }
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach((p) => {
-            p.update();
-            p.draw();
+        ribbons.forEach((r) => {
+            r.update();
+            r.draw();
         });
-        connectParticles();
         requestAnimationFrame(animate);
     }
 
@@ -368,6 +393,33 @@ function launchConfetti() {
             konamiIndex = 0;
         }
     });
+})();
+
+/* ==========================================
+   AUTO CELEBRATE ON REACHING BOTTOM
+   ========================================== */
+(function initBottomCelebration() {
+    let interval = null;
+
+    const footer = document.querySelector(".footer");
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !interval) {
+                    launchConfetti();
+                    interval = setInterval(launchConfetti, 300);
+                } else if (!entry.isIntersecting && interval) {
+                    clearInterval(interval);
+                    interval = null;
+                }
+            });
+        },
+        { threshold: 0.3 },
+    );
+
+    observer.observe(footer);
 })();
 
 /* ==========================================
