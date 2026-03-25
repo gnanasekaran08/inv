@@ -11,6 +11,7 @@
   --bg-dark: #0d1117;
   --bg-card: #161b22;
   --bg-card-hover: #1c2333;
+  --bg-terminal-bar: #1c2128;
   --border: #30363d;
   --text: #e6edf3;
   --text-dim: #8b949e;
@@ -31,6 +32,34 @@
   --font-sans: 'Inter', sans-serif;
   --glow-pink: 0 0 30px rgba(255, 107, 157, 0.3);
   --glow-purple: 0 0 30px rgba(196, 77, 255, 0.3);
+  --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --selection-bg: rgba(196, 77, 255, 0.3);
+}
+
+[data-theme="light"] {
+  --bg-dark: #f6f8fa;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f0f3f6;
+  --bg-terminal-bar: #e8ecf0;
+  --border: #d0d7de;
+  --text: #1f2328;
+  --text-dim: #656d76;
+  --accent-pink: #e5457a;
+  --accent-purple: #a33dcc;
+  --accent-blue: #0969da;
+  --accent-green: #1a7f37;
+  --accent-yellow: #9a6700;
+  --accent-orange: #cf4e17;
+  --accent-cyan: #1b9e8c;
+  --code-keyword: #cf222e;
+  --code-string: #0550ae;
+  --code-class: #953800;
+  --code-comment: #6e7781;
+  --code-prop: #8250df;
+  --glow-pink: 0 0 20px rgba(229, 69, 122, 0.15);
+  --glow-purple: 0 0 20px rgba(163, 61, 204, 0.15);
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --selection-bg: rgba(163, 61, 204, 0.2);
 }
 
 html {
@@ -43,6 +72,7 @@ body {
   font-family: var(--font-sans);
   overflow-x: hidden;
   line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 #particles {
@@ -95,12 +125,12 @@ body {
   width: 100%;
   max-width: 700px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--glow-purple);
+  box-shadow: var(--shadow-card), var(--glow-purple);
   transition: box-shadow 0.3s ease;
 }
 
 .terminal-window:hover {
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6), var(--glow-pink);
+  box-shadow: var(--shadow-card), var(--glow-pink);
 }
 
 .terminal-bar {
@@ -108,7 +138,7 @@ body {
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  background: #1c2128;
+  background: var(--bg-terminal-bar);
   border-bottom: 1px solid var(--border);
 }
 
@@ -364,6 +394,7 @@ body {
   border: 3px solid var(--bg-dark);
   z-index: 2;
   flex-shrink: 0;
+  transition: border-color 0.3s ease;
 }
 
 .commit-dot.pulse {
@@ -550,7 +581,7 @@ body {
   align-items: center;
   gap: 8px;
   padding: 12px 16px;
-  background: #1c2128;
+  background: var(--bg-terminal-bar);
   border-bottom: 1px solid var(--border);
 }
 
@@ -873,6 +904,60 @@ body {
    SELECTION
    ========================================== */
 ::selection {
-  background: rgba(196, 77, 255, 0.3);
+  background: var(--selection-bg);
   color: var(--text);
+}
+
+/* ==========================================
+   THEME TOGGLE
+   ========================================== */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--accent-purple);
+  box-shadow: var(--glow-purple);
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.theme-toggle .icon-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+
+.theme-toggle .icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+[data-theme="light"] .theme-toggle .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+[data-theme="light"] .theme-toggle .icon-moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
 }
