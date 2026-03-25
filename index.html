@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gnanasekaran & Vaibhava — git merge our-lives</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Particle canvas background -->
+  <canvas id="particles"></canvas>
+
+  <!-- ======== HERO / BOOT SCREEN ======== -->
+  <section id="hero" class="section">
+    <div class="terminal-window hero-terminal">
+      <div class="terminal-bar">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="terminal-title">love.sh — zsh</span>
+      </div>
+      <div class="terminal-body">
+        <p class="line"><span class="prompt">$</span> <span class="cmd typing" data-text="git init our-love-story">git init our-love-story</span></p>
+        <p class="line output fade-in-delay-1">Initialized empty repository in /life/together/.git</p>
+        <p class="line fade-in-delay-2"><span class="prompt">$</span> <span class="cmd">git merge gnanasekaran vaibhava --strategy=love</span></p>
+        <p class="line output fade-in-delay-3">Merging branches... <span class="success">✓ Successfully merged!</span></p>
+        <p class="line output fade-in-delay-4 blink-cursor">No conflicts found. It was meant to be. 💛</p>
+      </div>
+    </div>
+    <div class="hero-content fade-in-delay-5">
+      <p class="hero-subtitle">You're invited to witness the most beautiful</p>
+      <h1 class="hero-title"><span class="code-keyword">merge</span><span class="code-paren">(</span><span class="code-string">"Gnanasekaran"</span><span class="code-comma">,</span> <span class="code-string">"Vaibhava"</span><span class="code-paren">)</span></h1>
+      <p class="hero-date">April 12, 2026</p>
+    </div>
+    <a href="#story" class="scroll-cta fade-in-delay-6">
+      <span>Scroll to compile</span>
+      <svg class="bounce" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    </a>
+  </section>
+
+  <!-- ======== OUR STORY — GIT LOG ======== -->
+  <section id="story" class="section">
+    <h2 class="section-title"><span class="code-comment">// Our Story</span></h2>
+    <p class="section-subtitle">git log --oneline --graph --all</p>
+    <div class="git-log">
+      <div class="commit reveal">
+        <div class="commit-line">
+          <div class="commit-dot"></div>
+          <div class="commit-branch branch-gna"></div>
+        </div>
+        <div class="commit-card">
+          <span class="commit-hash">#000001</span>
+          <span class="commit-msg">feat: two programmers walk into life</span>
+          <span class="commit-date">The Beginning</span>
+        </div>
+      </div>
+      <div class="commit reveal">
+        <div class="commit-line">
+          <div class="commit-dot"></div>
+          <div class="commit-branch branch-vai"></div>
+        </div>
+        <div class="commit-card">
+          <span class="commit-hash">#000010</span>
+          <span class="commit-msg">fix: debugged each other's hearts</span>
+          <span class="commit-date">First Connection</span>
+        </div>
+      </div>
+      <div class="commit reveal">
+        <div class="commit-line">
+          <div class="commit-dot"></div>
+          <div class="commit-branch branch-merge"></div>
+        </div>
+        <div class="commit-card">
+          <span class="commit-hash">#000011</span>
+          <span class="commit-msg">refactor: moved to the same namespace</span>
+          <span class="commit-date">Getting Closer</span>
+        </div>
+      </div>
+      <div class="commit reveal">
+        <div class="commit-line">
+          <div class="commit-dot"></div>
+          <div class="commit-branch branch-merge"></div>
+        </div>
+        <div class="commit-card">
+          <span class="commit-hash">#000100</span>
+          <span class="commit-msg">chore: passed all compatibility tests ✓</span>
+          <span class="commit-date">Growing Together</span>
+        </div>
+      </div>
+      <div class="commit reveal">
+        <div class="commit-line">
+          <div class="commit-dot pulse"></div>
+          <div class="commit-branch branch-love"></div>
+        </div>
+        <div class="commit-card highlight">
+          <span class="commit-hash">#000101</span>
+          <span class="commit-msg">release: v1.0.0 — merging lives forever 💍</span>
+          <span class="commit-date">April 12, 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== COUNTDOWN ======== -->
+  <section id="countdown" class="section">
+    <h2 class="section-title"><span class="code-comment">// Countdown to Deployment</span></h2>
+    <p class="section-subtitle">Time remaining until production release</p>
+    <div class="countdown-container reveal">
+      <div class="countdown-block">
+        <div class="countdown-value" id="days">000</div>
+        <div class="countdown-label">days</div>
+      </div>
+      <div class="countdown-separator">:</div>
+      <div class="countdown-block">
+        <div class="countdown-value" id="hours">00</div>
+        <div class="countdown-label">hours</div>
+      </div>
+      <div class="countdown-separator">:</div>
+      <div class="countdown-block">
+        <div class="countdown-value" id="minutes">00</div>
+        <div class="countdown-label">minutes</div>
+      </div>
+      <div class="countdown-separator">:</div>
+      <div class="countdown-block">
+        <div class="countdown-value" id="seconds">00</div>
+        <div class="countdown-label">seconds</div>
+      </div>
+    </div>
+    <div class="progress-bar-container reveal">
+      <div class="progress-label">Build Progress</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-percent" id="progressPercent">0%</div>
+    </div>
+  </section>
+
+  <!-- ======== THE COUPLE — CLASS DEFINITION ======== -->
+  <section id="couple" class="section">
+    <h2 class="section-title"><span class="code-comment">// The Couple</span></h2>
+    <p class="section-subtitle">class Couple extends Partners</p>
+    <div class="couple-container">
+      <div class="code-card reveal">
+        <div class="code-card-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="code-filename">gnanasekaran.ts</span>
+        </div>
+        <div class="code-card-body">
+          <pre><code><span class="kw">class</span> <span class="cls">Gnanasekaran</span> <span class="kw">extends</span> <span class="cls">Human</span> {
+  <span class="prop">role</span> = <span class="str">"The Groom"</span>;
+  <span class="prop">type</span> = <span class="str">"Programmer"</span>;
+  <span class="prop">passion</span> = <span class="str">"Coding & Creating"</span>;
+  <span class="prop">superpower</span> = <span class="str">"Turning coffee</span>
+    <span class="str">into code"</span>;
+  <span class="prop">loves</span> = <span class="str">"Vaibhava"</span>; <span class="cmt">// ∞</span>
+}</code></pre>
+        </div>
+      </div>
+
+      <div class="couple-heart reveal">
+        <div class="heart-icon">
+          <svg viewBox="0 0 100 100" class="heart-svg">
+            <path d="M50 88 C25 65 5 50 5 30 C5 15 15 5 30 5 C40 5 48 12 50 18 C52 12 60 5 70 5 C85 5 95 15 95 30 C95 50 75 65 50 88Z" fill="none" stroke="url(#heartGrad)" stroke-width="2" class="heart-path"/>
+            <defs>
+              <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ff6b9d"/>
+                <stop offset="100%" style="stop-color:#c44dff"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="ampersand">&amp;&amp;</span>
+      </div>
+
+      <div class="code-card reveal">
+        <div class="code-card-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="code-filename">vaibhava.ts</span>
+        </div>
+        <div class="code-card-body">
+          <pre><code><span class="kw">class</span> <span class="cls">Vaibhava</span> <span class="kw">extends</span> <span class="cls">Human</span> {
+  <span class="prop">role</span> = <span class="str">"The Bride"</span>;
+  <span class="prop">type</span> = <span class="str">"Programmer"</span>;
+  <span class="prop">passion</span> = <span class="str">"Building & Solving"</span>;
+  <span class="prop">superpower</span> = <span class="str">"Debugging</span>
+    <span class="str">the impossible"</span>;
+  <span class="prop">loves</span> = <span class="str">"Gnanasekaran"</span>; <span class="cmt">// ∞</span>
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== EVENT DETAILS ======== -->
+  <section id="details" class="section">
+    <h2 class="section-title"><span class="code-comment">// Event Details</span></h2>
+    <p class="section-subtitle">config.wedding.json</p>
+    <div class="json-card reveal">
+      <div class="code-card-header">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="code-filename">config.wedding.json</span>
+      </div>
+      <div class="code-card-body json-body">
+        <pre><code>{
+  <span class="json-key">"event"</span>: <span class="str">"Wedding Ceremony"</span>,
+  <span class="json-key">"version"</span>: <span class="str">"1.0.0 — Forever Release"</span>,
+  <span class="json-key">"date"</span>: <span class="str">"April 12, 2026"</span>,
+  <span class="json-key">"time"</span>: <span class="str">"Muhurtham Time"</span>,
+  <span class="json-key">"venue"</span>: {
+    <span class="json-key">"name"</span>: <span class="str">"To Be Announced"</span>,
+    <span class="json-key">"coordinates"</span>: <span class="str">"Will be updated soon"</span>
+  },
+  <span class="json-key">"dress_code"</span>: <span class="str">"Traditional / Festive"</span>,
+  <span class="json-key">"status"</span>: <span class="str">"<span class="blink">DEPLOYING SOON...</span>"</span>
+}</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FUN FUNCTIONS ======== -->
+  <section id="functions" class="section">
+    <h2 class="section-title"><span class="code-comment">// What To Expect</span></h2>
+    <p class="section-subtitle">import { expectations } from './wedding'</p>
+    <div class="func-grid">
+      <div class="func-card reveal">
+        <div class="func-icon">🎊</div>
+        <div class="func-name">ceremony<span class="code-paren">()</span></div>
+        <div class="func-desc">Traditional wedding rituals bound by ancient algorithms of love</div>
+      </div>
+      <div class="func-card reveal">
+        <div class="func-icon">🍽️</div>
+        <div class="func-name">feast<span class="code-paren">()</span></div>
+        <div class="func-desc">A grand buffet — no stack overflow, we promise (maybe food coma)</div>
+      </div>
+      <div class="func-card reveal">
+        <div class="func-icon">💃</div>
+        <div class="func-name">celebrate<span class="code-paren">()</span></div>
+        <div class="func-desc">Dancing, laughter, and zero compile errors on the dance floor</div>
+      </div>
+      <div class="func-card reveal">
+        <div class="func-icon">📸</div>
+        <div class="func-name">captureMemories<span class="code-paren">()</span></div>
+        <div class="func-desc">High-resolution snapshots committed to the permanent branch</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== RSVP ======== -->
+  <section id="rsvp" class="section">
+    <h2 class="section-title"><span class="code-comment">// RSVP</span></h2>
+    <p class="section-subtitle">Please confirm your attendance</p>
+    <div class="rsvp-terminal reveal">
+      <div class="terminal-bar">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
+        <span class="terminal-title">rsvp.sh — zsh</span>
+      </div>
+      <div class="terminal-body">
+        <p class="line"><span class="prompt">$</span> <span class="cmd">echo "Will you attend?"</span></p>
+        <p class="line output">Will you attend?</p>
+        <p class="line"><span class="prompt">$</span> <span class="cmd">_</span></p>
+        <div class="rsvp-buttons">
+          <button class="rsvp-btn accept" onclick="rsvpResponse('accepted')">
+            <span class="btn-text">git commit -m "I'll be there! 🎉"</span>
+          </button>
+          <button class="rsvp-btn decline" onclick="rsvpResponse('declined')">
+            <span class="btn-text">git stash -m "Can't make it 😢"</span>
+          </button>
+        </div>
+        <div id="rsvpOutput" class="rsvp-output"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-code">
+        <span class="code-comment">/**</span><br/>
+        <span class="code-comment"> * Built with love, HTML, CSS & JavaScript</span><br/>
+        <span class="code-comment"> * No frameworks were harmed in the making of this invitation</span><br/>
+        <span class="code-comment"> * License: MIT (Marriage Is Terrific)</span><br/>
+        <span class="code-comment"> */</span>
+      </div>
+      <p class="footer-names">Gnanasekaran <span class="heart-inline">❤</span> Vaibhava</p>
+      <p class="footer-tag">while(alive) { love++; }</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
